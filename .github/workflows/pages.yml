@@ -1,0 +1,42 @@
+name: Publish the tool shelf
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read Pages configuration
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Build and test
+        env:
+          SITE_URL: ${{ steps.pages.outputs.base_url }}/
+        run: |
+          npm run build
+          npm test
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+      - name: Publish
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Notify IndexNow after publication
+        env:
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: npm run indexnow -- --submit
