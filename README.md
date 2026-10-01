@@ -1,5 +1,8 @@
 # Freeware Catalog — the tool shelf
 
+[Browse the tool shelf](https://dstvhgp4sm-png.github.io/freewarecatalog-index/) ·
+[Explore the full catalogue](https://freewarecatalog.com/)
+
 [Freeware Catalog](https://freewarecatalog.com/) is an independent directory of
 free desktop software, organised around tasks rather than a wall of download
 buttons. This repository is a small, open companion website: twelve practical
