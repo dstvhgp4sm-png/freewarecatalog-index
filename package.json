@@ -1,0 +1,12 @@
+{
+  "name": "freewarecatalog-index",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/site.test.mjs",
+    "preview": "node scripts/serve.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
